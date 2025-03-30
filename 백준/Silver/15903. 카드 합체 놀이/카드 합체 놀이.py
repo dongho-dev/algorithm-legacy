@@ -6,21 +6,14 @@ n, m = map(int, sys.stdin.readline().strip().split())
 card = list(map(int, sys.stdin.readline().strip().split()))
 
 # 합체 처리
-minHeap = []
-minimum = 0
-
-for i in card:
-    heapq.heappush(minHeap, i)
+heapq.heapify(card)
 
 for _ in range(m):
-    first = heapq.heappop(minHeap)
-    second = heapq.heappop(minHeap)
-    sum = first + second
-    heapq.heappush(minHeap, sum)
-    heapq.heappush(minHeap, sum)
-
-for i in minHeap:
-    minimum += i
+    first = heapq.heappop(card)
+    second = heapq.heappop(card)
+    combine = first + second
+    heapq.heappush(card, combine)
+    heapq.heappush(card, combine)
 
 # 출력 처리
-print(minimum)
+print(sum(card))
